@@ -1,0 +1,6 @@
+Entity_ID,Uniformity_Scoer,Review_Status
+p001,0.92,reviewed
+p002,0.61,needs_review
+p003,0.99,reviewed
+p004,0.88,needs_review
+p005,0.76,needs_review

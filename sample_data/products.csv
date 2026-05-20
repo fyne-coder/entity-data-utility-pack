@@ -1,0 +1,7 @@
+sku,brand,category,color,warehouse_id,source_product_id
+SKU-001,Acme,Widget,red,W1,P-100
+SKU-002,Acme,Widget,blue,W1,P-101
+SKU-003,Acme,Widget,red,W2,P-102
+SKU-004,Northwind,Gadget,green,W2,P-200
+SKU-005,Northwind,Gadget,green,W2,P-201
+SKU-006,Globex,Part,black,W3,P-300

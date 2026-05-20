@@ -1,0 +1,5 @@
+clusterId1,clusterId2,clusterPairSimilarity
+p003,p004,0.91
+p001,p002,0.42
+p001,p005,0.25
+p002,p005,0.33

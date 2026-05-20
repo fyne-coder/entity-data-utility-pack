@@ -1,0 +1,5 @@
+account_id,customer_name,statement_date,balance,status,segment
+A001,Acme Corporation,2026-01-31,"$1,250.50",active,enterprise
+A002,Beta LLC,2026-02-28,not available,inactive,small_business
+A003,Charlie Inc,2026-03-31,"$3,000.00",active,enterprise
+A004,Delta Co,03/31/2026,$500,active,mid_market
