@@ -173,13 +173,20 @@ Large-data guidance, current limits, and a synthetic benchmark harness are in
 blocks, cap report previews, and treat TF-IDF/PDF/notebook workflows as
 in-memory convenience paths rather than million-row defaults.
 
-## Important Cleanup Before Sharing Broadly
+## GitHub Readiness
 
-- Remove all top-level execution from scripts so they can be imported safely.
-- Replace hardcoded file names, URLs, and tenant-specific column names with arguments.
-- Prefer environment variables or explicit connector config for anything requiring credentials.
-- Add tests around the synthetic sample data in `sample_data/`.
-- Normalize output formats into CSV plus a single HTML report.
+- The package code under `src/er_reviewer/` is the supported importable surface.
+- The copied legacy scripts under `key_scripts/` are quarantined reference
+  material. They are useful migration evidence, but new functionality should be
+  added to `src/er_reviewer/` with tests instead of extending those scripts.
+- Sample data is synthetic. Do not commit customer exports, generated reports,
+  local notebooks with private outputs, credentials, API keys, or benchmark
+  data.
+- Generated analyst artifacts such as `.xlsx`, `.parquet`, `.pdf`, local report
+  folders, coverage files, virtual environments, and caches are ignored by
+  `.gitignore`.
+- The repo-native validation gate is `make ci`; GitHub Actions runs the same
+  command on push and pull request.
 
 ## Agent Readiness
 
