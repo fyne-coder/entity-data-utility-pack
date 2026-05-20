@@ -1,13 +1,8 @@
 # Entity Data Utility Pack
 
-This folder is a portable working pack extracted from an internal analysis workspace.
-It is now a reusable **entity and dataset review** utility for profiling tabular
-exports, catching data-quality problems, surfacing entity-resolution QA issues,
-and producing analyst handoff reports.
-
-The original directory is a loose Python analysis workspace, not a packaged repo. This pack
-keeps the reusable parts and leaves behind virtualenvs, large exports, and credential-bearing
-integration experiments.
+Entity Data Utility Pack is a reusable **entity and dataset review** utility for
+profiling tabular exports, catching data-quality problems, surfacing
+entity-resolution QA issues, and producing analyst handoff reports.
 
 ## What This Is
 
@@ -31,14 +26,12 @@ decide what to merge or fix.
 
 ## Folder Layout
 
-- `docs/`: existing design docs for a generalized entity resolution engine.
-- `context/`: catalog and packaging review notes from the source directory review.
-- `key_scripts/common/`: most reusable scripts from the organized `common/` folder.
-- `key_scripts/cluster_review/`: cluster, recall, precision, and uniformity analysis scripts.
-- `key_scripts/data_hygiene/`: CSV structure and encoding check scripts.
-- `key_scripts/mapping_checks/`: ID mapping, source mapping, export comparison, and rule-insight scripts.
+- `src/er_reviewer/`: importable package and CLI implementation.
+- `tests/`: unit and CLI smoke tests.
+- `docs/`: design references and performance guidance.
+- `examples/`: notebook-style analyst walkthroughs.
 - `sample_data/`: synthetic CSVs for development and testing.
-- `notes/`: next-step implementation notes.
+- `scripts/`: local benchmark and validation helpers.
 
 ## Install
 
@@ -173,12 +166,9 @@ Large-data guidance, current limits, and a synthetic benchmark harness are in
 blocks, cap report previews, and treat TF-IDF/PDF/notebook workflows as
 in-memory convenience paths rather than million-row defaults.
 
-## GitHub Readiness
+## Development
 
 - The package code under `src/er_reviewer/` is the supported importable surface.
-- The copied legacy scripts under `key_scripts/` are quarantined reference
-  material. They are useful migration evidence, but new functionality should be
-  added to `src/er_reviewer/` with tests instead of extending those scripts.
 - Sample data is synthetic. Do not commit customer exports, generated reports,
   local notebooks with private outputs, credentials, API keys, or benchmark
   data.
@@ -188,17 +178,10 @@ in-memory convenience paths rather than million-row defaults.
 - The repo-native validation gate is `make ci`; GitHub Actions runs the same
   command on push and pull request.
 
-## Agent Readiness
-
-Canonical local check command:
-
 ```bash
 make ci
 ```
 
 Development dependencies are declared in the `dev` optional extra and locked in
 `uv.lock`. `make ci` runs Ruff format check, Ruff lint, syntax checks over the
-legacy script material, and the sample-data test suite.
-
-For medium/risky work, the task artifact should name acceptance criteria,
-failure cases, evaluator inputs, verification commands, and evidence paths.
+package/test tree, mypy, and the sample-data test suite.

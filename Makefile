@@ -10,7 +10,7 @@ test:
 
 lint:
 	ruff check src tests scripts
-	python3 scripts/check_syntax.py src tests key_scripts
+	python3 scripts/check_syntax.py src tests scripts
 
 typecheck:
 	@if python3 -m mypy --version >/dev/null 2>&1; then \

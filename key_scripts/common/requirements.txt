@@ -1,7 +1,0 @@
-pandas
-dask[dataframe]
-configparser
-fuzzywuzzy
-sklearn
-numpy
-tqdm

@@ -48,7 +48,7 @@ def run_command(command: list[str]) -> tuple[float, int]:
 
 
 def peak_rss_mb() -> float:
-    # macOS reports bytes; Linux reports KiB. Arthur's local target is macOS.
+    # macOS reports bytes; Linux reports KiB.
     usage = resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss
     if sys.platform == "darwin":
         return usage / (1024 * 1024)
