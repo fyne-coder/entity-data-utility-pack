@@ -1,7 +1,7 @@
 # Performance and Large Dataset Notes
 
 This package is useful for large analyst exports, but it is not a distributed
-entity-resolution engine. The v0.3 target is practical laptop-scale review:
+entity-resolution engine. The current target is practical laptop-scale review:
 hundreds of thousands to low millions of rows when commands use streaming
 aggregators, bounded duplicate blocks, and capped report previews.
 

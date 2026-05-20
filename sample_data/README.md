@@ -19,6 +19,10 @@ data.
 
 ## Suggested Practice Runs
 
+For most users, we recommend running these samples through a Codex or Cowork
+session first. See `../docs/codex_cowork_usage.md` for the recommended agent
+workflow.
+
 ```bash
 er-review report sample_data/details.csv --out-dir output/sample_review --mapping entity_id:reference_id --cluster entity_id
 er-review profile sample_data/financial_extract.csv --out output/financial_profile.csv

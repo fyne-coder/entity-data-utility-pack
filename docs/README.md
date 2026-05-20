@@ -6,10 +6,10 @@ understand implementation details.
 
 ## Start Here
 
+- [Using This Repo in Codex or Cowork](codex_cowork_usage.md): the recommended
+  way for most users to run the package safely on local files.
 - [Business User Guide](business_user_guide.md): what the package is for, what
   questions it answers, and how to interpret the outputs.
-- [Using This Repo in Codex or Cowork](codex_cowork_usage.md): how to ask an
-  agent workspace to run the package safely on local files.
 - [Performance and Large Dataset Notes](performance.md): practical limits and
   recommended defaults for larger exports.
 

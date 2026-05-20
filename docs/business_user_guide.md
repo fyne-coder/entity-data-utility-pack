@@ -9,6 +9,17 @@ know what deserves review.
 The package does not decide which records should be merged. It produces evidence
 and review lists so analysts and business owners can make cleaner decisions.
 
+## Preferred Workflow
+
+For most users, the easiest and safest way to use this repo is through Codex,
+Cowork, or a similar coding-agent workspace. The agent can inspect your file
+headers, choose the right `er-review` commands, write outputs under ignored
+local folders, and explain the findings in business terms.
+
+Start with [Using This Repo in Codex or Cowork](codex_cowork_usage.md) if you
+want an agent to run the review for you. Use the manual CLI examples below when
+you want direct command-line control.
+
 ## Questions It Helps Answer
 
 - Can this file be loaded and read reliably?
@@ -37,8 +48,9 @@ er-review report input/customers.csv \
   --max-output-rows 5000
 ```
 
-Use the column names from your own file. If you do not know the columns yet,
-start with:
+Use the column names from your own file. Replace `entity_id` and `reference_id`
+with the actual columns in your export.
+If you do not know the columns yet, start with:
 
 ```bash
 er-review profile input/customers.csv --out output/profile.csv
@@ -54,7 +66,7 @@ er-review profile input/customers.csv --out output/profile.csv
 | You need to check ID consistency | `er-review mappings` | Finds one-to-many mapping exceptions such as one customer ID tied to many source IDs. |
 | You need duplicate candidates | `er-review duplicates` | Produces rows that look similar within a blocking group such as date of birth, email domain, or account region. |
 | You have grouped or matched records | `er-review clusters` | Summarizes entity groups and highlights unusually large groups. |
-| You have old and new exports | `er-review compare` | Explains added, removed, reassigned, split, and merged groups. |
+| You have old and new exports | `er-review compare` | Explains added, removed, reassigned, split, and merged groups. Provide your group ID and row/member ID columns. |
 | You need to inspect one record or group | `er-review lookup` | Pulls the row and related group context. |
 
 ## Column Names To Look For

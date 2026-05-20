@@ -5,6 +5,12 @@ exports into a clear review package: what looks healthy, what needs attention,
 and which records or entity groups should be checked before downstream
 reporting, migration, or matching work continues.
 
+For most business users and analysts, the recommended workflow is to use this
+repo inside Codex, Cowork, or a similar coding-agent workspace. The agent can
+inspect headers, choose the right commands, keep private files out of git, and
+summarize the results in business terms. The raw CLI remains available for
+engineers and analysts who want direct command-line control.
+
 ## What This Is
 
 A lightweight review toolkit for teams that need confidence in customer,
@@ -45,10 +51,10 @@ make better decisions before data is loaded, matched, migrated, or reported.
 
 ## Start Here
 
+- [Using This Repo in Codex or Cowork](docs/codex_cowork_usage.md): prompts and
+  operating rules for the recommended agent-assisted workflow.
 - [Business User Guide](docs/business_user_guide.md): plain-language workflow
   for analysts and business users.
-- [Using This Repo in Codex or Cowork](docs/codex_cowork_usage.md): prompts and
-  operating rules for agent workspaces.
 - [Performance and Large Dataset Notes](docs/performance.md): scaling guidance
   and large-export defaults.
 
@@ -71,21 +77,27 @@ python3 -m pip install -e '.[dev]'       # pytest, ruff, mypy
 
 ## Quick Start
 
+Recommended first run:
+
+```bash
+er-review report sample_data/details.csv --out-dir output/review --mapping entity_id:reference_id --cluster entity_id
+```
+
+Useful focused checks:
+
 ```bash
 er-review --version
 er-review hygiene sample_data/bad_csv_example.csv
 er-review profile sample_data/financial_extract.csv
-er-review pair-profile sample_data/products.csv --threshold 0.5
-er-review mappings sample_data/details.csv --left entity_id --right reference_id
 er-review duplicates sample_data/people_duplicates.csv --block "Date Of Birth" --match "Full Name" --id "Entity ID"
-er-review duplicates sample_data/people_duplicates.csv --block "Date Of Birth" --match "Full Name" --id "Entity ID" --max-block-size 5000 --oversized-block-behavior sample --sample-rate 0.25
-er-review clusters sample_data/details.csv --cluster entity_id --chart-out output/cluster_sizes.svg
-er-review similarity sample_data/details.csv sample_data/similar.csv --cluster entity_id --compare company_name
 er-review compare sample_data/export_old.csv sample_data/export_new.csv --id entity_id --member record_id --narrative
 er-review lookup sample_data/details.csv --id record_id --value e001 --cluster entity_id
-er-review report sample_data/details.csv --out-dir output/review --mapping entity_id:reference_id --cluster entity_id
-er-review report sample_data/details.csv --out-dir output/review --workbook-out output/review.xlsx --redact company_name --max-output-rows 5000
 ```
+
+Additional commands are available for pair profiling, one-to-many mapping
+checks, cluster summaries, similarity scoring, workbook/PDF output, and report
+redaction. Use `er-review --help` and command-specific help for the full option
+set.
 
 The report command is the easiest starting point for non-developers: it writes
 section CSVs plus a consolidated HTML report, and can optionally create a

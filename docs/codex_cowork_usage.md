@@ -1,23 +1,37 @@
 # Using This Repo in Codex or Cowork
 
+This is the recommended way to use Entity Data Utility Pack for most business
+users and analysts.
+
 Codex, Cowork, or any similar coding-agent workspace can use this repo as a
 repeatable data-review tool. The key is to give the agent the local file path,
 the business question, the expected output, and clear rules about private data.
 
-## One-Time Setup
+## One-Time Setup For Analysis
 
-Clone the repo and install it in editable mode:
+Clone the repo and install the extras used for reports, Excel/Parquet files,
+and faster similarity scoring:
 
 ```bash
 git clone https://github.com/fyne-coder/entity-data-utility-pack.git
 cd entity-data-utility-pack
+python3 -m pip install -e '.[reports,tables,analysis]'
+```
+
+If the agent is only running analysis on a data file, it should run the relevant
+`er-review` command and report the output paths.
+
+## Contributor Setup
+
+If the agent will modify package code, tests, or docs, install the development
+extra and run the validation gate:
+
+```bash
 python3 -m pip install -e '.[reports,tables,analysis,dev]'
 make ci
 ```
 
-Use `make ci` as the validation command after code changes. If the agent is
-only running analysis on a data file, it should run the relevant `er-review`
-command and report the output paths.
+Use `make ci` as the validation command after code changes.
 
 ## Where To Put Data
 
