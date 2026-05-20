@@ -1,28 +1,37 @@
 # Entity Data Utility Pack
 
-Entity Data Utility Pack is a reusable **entity and dataset review** utility for
-profiling tabular exports, catching data-quality problems, surfacing
-entity-resolution QA issues, and producing analyst handoff reports.
+Entity Data Utility Pack helps analysts and data teams turn messy tabular
+exports into a clear review package: what looks healthy, what needs attention,
+and which records or entity groups should be checked before downstream
+reporting, migration, or matching work continues.
 
 ## What This Is
 
-A command-line and library utility that helps teams review tabular data and
-entity-resolution outputs:
+A lightweight review toolkit for teams that need confidence in customer,
+account, vendor, product, or other entity data. It is designed for the common
+handoff moment when someone has a CSV, Excel, or Parquet export and needs to
+answer practical questions quickly:
 
-- Profile CSV columns before analysis, including typed numeric/date/currency
-  summaries.
-- Detect CSV hygiene issues before pandas ingest.
-- Audit one-to-many mappings between IDs, sources, and clusters.
-- Find possible duplicate records with blocked fuzzy matching.
-- Score cluster size, low-score cluster risk, and candidate cluster-pair
-  similarity.
-- Compare two exports for persistent ID membership drift, with optional
-  split/merge/reassignment narrative rows.
-- Produce HTML, CSV, SVG, and optional Excel workbook report artifacts.
+- Are the key fields complete, consistent, and usable?
+- Do IDs or reference values map cleanly, or do they point to conflicting
+  records?
+- Which records look like possible duplicates?
+- Which entity groups are unusually large, low-confidence, or worth reviewing?
+- What changed between two exports, and can the changes be explained?
+- Can the findings be shared as a simple report or workbook?
 
-It is not a full entity-resolution engine, record-linkage platform, or automatic
-merge/survivorship decision system. It surfaces review candidates; humans still
-decide what to merge or fix.
+It is not a full entity-resolution platform or an automatic merge decision
+system. It produces review candidates, summaries, and artifacts that help people
+make better decisions before data is loaded, matched, migrated, or reported.
+
+## Common Use Cases
+
+- Pre-migration data quality review.
+- Customer/account/vendor/product master-data cleanup.
+- Entity-resolution QA after a matching or clustering run.
+- Duplicate review before outreach, billing, analytics, or CRM sync.
+- Comparing old and new exports to explain adds, removals, splits, and merges.
+- Packaging findings for business users in CSV, HTML, SVG, Excel, or PDF.
 
 ## Folder Layout
 
@@ -50,7 +59,7 @@ python3 -m pip install -e '.[reports]'   # openpyxl, weasyprint
 python3 -m pip install -e '.[dev]'       # pytest, ruff, mypy
 ```
 
-## CLI Examples
+## Quick Start
 
 ```bash
 er-review --version
@@ -67,6 +76,10 @@ er-review lookup sample_data/details.csv --id record_id --value e001 --cluster e
 er-review report sample_data/details.csv --out-dir output/review --mapping entity_id:reference_id --cluster entity_id
 er-review report sample_data/details.csv --out-dir output/review --workbook-out output/review.xlsx --redact company_name --max-output-rows 5000
 ```
+
+The report command is the easiest starting point for non-developers: it writes
+section CSVs plus a consolidated HTML report, and can optionally create a
+multi-tab Excel workbook for stakeholder review.
 
 Most commands accept `--format auto|csv|tsv|xlsx|parquet`; Excel and Parquet
 input require the optional `tables` extra. CSV remains the preferred path for
@@ -129,6 +142,20 @@ Path-based profiling is available for CSV/TSV/XLSX/Parquet inputs:
 ```python
 profile = api.profile_path("sample_data/details.csv")
 ```
+
+## Outputs
+
+- Column profiles with completeness, uniqueness, type, and common-value
+  summaries.
+- CSV hygiene checks for malformed rows, NUL bytes, and embedded line breaks.
+- One-to-many mapping exceptions for IDs, source systems, and reference values.
+- Duplicate candidate lists with configurable blocking and fuzzy scoring.
+- Entity/group summaries with size buckets, match-score averages, and outlier
+  reasons.
+- Export comparison narratives for adds, removals, reassignment, splits, and
+  merges.
+- HTML reports, section CSVs, SVG charts, and optional Excel/PDF handoff
+  artifacts.
 
 ## Package Modules
 
