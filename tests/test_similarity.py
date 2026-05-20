@@ -21,9 +21,9 @@ def test_compare_cluster_pairs_scores_candidate_pairs() -> None:
     similarities = compare_cluster_pairs_csv(
         SAMPLE_DATA / "details.csv",
         SAMPLE_DATA / "similar.csv",
-        cluster_column="persistentId",
-        left_pair_column="clusterId1",
-        right_pair_column="clusterId2",
+        cluster_column="entity_id",
+        left_pair_column="left_entity_id",
+        right_pair_column="right_entity_id",
         compare_columns=["company_name"],
     )
 
@@ -46,9 +46,9 @@ def test_tfidf_method_reports_missing_optional_dependency(
         compare_cluster_pairs_csv(
             SAMPLE_DATA / "details.csv",
             SAMPLE_DATA / "similar.csv",
-            cluster_column="persistentId",
-            left_pair_column="clusterId1",
-            right_pair_column="clusterId2",
+            cluster_column="entity_id",
+            left_pair_column="left_entity_id",
+            right_pair_column="right_entity_id",
             compare_columns=["company_name"],
             method="tfidf",
         )

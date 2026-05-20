@@ -71,11 +71,11 @@ def test_cli_lookup_writes_cluster_siblings(tmp_path: Path) -> None:
             "lookup",
             str(SAMPLE_DATA / "details.csv"),
             "--id",
-            "entityId",
+            "record_id",
             "--value",
             "e001",
             "--cluster",
-            "persistentId",
+            "entity_id",
             "--out",
             str(output),
         ]
@@ -95,13 +95,13 @@ def test_cli_lookup_can_redact_sensitive_columns(tmp_path: Path) -> None:
             "lookup",
             str(SAMPLE_DATA / "details.csv"),
             "--id",
-            "entityId",
+            "record_id",
             "--value",
             "e001",
             "--cluster",
-            "persistentId",
+            "entity_id",
             "--redact",
-            "company_name,ml_company_name",
+            "company_name,normalized_company_name",
             "--out",
             str(output),
         ]
@@ -121,12 +121,12 @@ def test_cli_report_supports_toml_config_and_redaction(tmp_path: Path) -> None:
 input = "{SAMPLE_DATA / "details.csv"}"
 out_dir = "{out_dir}"
 title = "Configured Review"
-cluster = "persistentId"
-redact = ["company_name", "ml_company_name"]
+cluster = "entity_id"
+redact = ["company_name", "normalized_company_name"]
 
 [[mappings]]
-left = "persistentId"
-right = "trusted_id"
+left = "entity_id"
+right = "reference_id"
 """,
         encoding="utf-8",
     )
@@ -152,11 +152,11 @@ def test_cli_report_writes_optional_workbook(tmp_path: Path) -> None:
             "--out-dir",
             str(output_dir),
             "--mapping",
-            "persistentId:trusted_id",
+            "entity_id:reference_id",
             "--workbook-out",
             str(workbook),
             "--redact",
-            "company_name,ml_company_name",
+            "company_name,normalized_company_name",
         ]
     )
 

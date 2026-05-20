@@ -208,4 +208,4 @@ This shows which fields are contributing to matches and which are dragging score
 | `analyze_similar_clusters_v1.py` | `jaccard_similarity_v3` (token overlap) | `fuzzy_token_sort` for names, `tfidf_cosine` for text |
 | `similar_entities_analysis_v1.py` | `TfidfVectorizer` per cluster pair | `tfidf_cosine` with global vectorizer |
 | `uniformity_analysis_v1.py` | `TfidfVectorizer` per cluster per column | `tfidf_cosine` with global vectorizer |
-| `AnalyzeClusters.py` | Pre-computed `ml_` match flags | `compare_values()` computed on the fly |
+| `AnalyzeClusters.py` | Pre-computed `normalized_` match flags | `compare_values()` computed on the fly |

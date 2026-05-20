@@ -57,14 +57,14 @@ er-review --version
 er-review hygiene sample_data/bad_csv_example.csv
 er-review profile sample_data/financial_extract.csv
 er-review pair-profile sample_data/products.csv --threshold 0.5
-er-review mappings sample_data/details.csv --left persistentId --right trusted_id
+er-review mappings sample_data/details.csv --left entity_id --right reference_id
 er-review duplicates sample_data/people_duplicates.csv --block "Date Of Birth" --match "Full Name" --id "Entity ID"
 er-review duplicates sample_data/people_duplicates.csv --block "Date Of Birth" --match "Full Name" --id "Entity ID" --max-block-size 5000 --oversized-block-behavior sample --sample-rate 0.25
-er-review clusters sample_data/details.csv --cluster persistentId --chart-out output/cluster_sizes.svg
-er-review similarity sample_data/details.csv sample_data/similar.csv --cluster persistentId --compare company_name
-er-review compare sample_data/export_old.csv sample_data/export_new.csv --id persistentId --member entityId --narrative
-er-review lookup sample_data/details.csv --id entityId --value e001 --cluster persistentId
-er-review report sample_data/details.csv --out-dir output/review --mapping persistentId:trusted_id --cluster persistentId
+er-review clusters sample_data/details.csv --cluster entity_id --chart-out output/cluster_sizes.svg
+er-review similarity sample_data/details.csv sample_data/similar.csv --cluster entity_id --compare company_name
+er-review compare sample_data/export_old.csv sample_data/export_new.csv --id entity_id --member record_id --narrative
+er-review lookup sample_data/details.csv --id record_id --value e001 --cluster entity_id
+er-review report sample_data/details.csv --out-dir output/review --mapping entity_id:reference_id --cluster entity_id
 er-review report sample_data/details.csv --out-dir output/review --workbook-out output/review.xlsx --redact company_name --max-output-rows 5000
 ```
 
@@ -82,7 +82,7 @@ After installing the optional analysis extra, TF-IDF cluster-pair similarity is
 available:
 
 ```bash
-er-review similarity sample_data/details.csv sample_data/similar.csv --cluster persistentId --compare company_name --method tfidf
+er-review similarity sample_data/details.csv sample_data/similar.csv --cluster entity_id --compare company_name --method tfidf
 ```
 
 Report recipes can be supplied as JSON or TOML:
@@ -91,17 +91,17 @@ Report recipes can be supplied as JSON or TOML:
 input = "sample_data/details.csv"
 out_dir = "output/review"
 title = "Configured Entity Review"
-cluster = "persistentId"
+cluster = "entity_id"
 redact = ["company_name"]
 
 [[mappings]]
-left = "persistentId"
-right = "trusted_id"
+left = "entity_id"
+right = "reference_id"
 
 [duplicates]
 block = "Date Of Birth"
 match = ["Full Name"]
-id = "entityId"
+id = "record_id"
 threshold = 0.8
 ```
 
@@ -120,8 +120,8 @@ from er_reviewer import api
 
 df = pd.read_csv("sample_data/details.csv")
 profile = api.profile(df)
-conflicts = api.mapping_conflicts(df, left="persistentId", right="trusted_id")
-clusters = api.cluster_summary(df, cluster="persistentId")
+conflicts = api.mapping_conflicts(df, left="entity_id", right="reference_id")
+clusters = api.cluster_summary(df, cluster="entity_id")
 ```
 
 Path-based profiling is available for CSV/TSV/XLSX/Parquet inputs:

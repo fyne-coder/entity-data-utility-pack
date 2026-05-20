@@ -9,7 +9,7 @@ SAMPLE_DATA = ROOT / "sample_data"
 def test_summarize_clusters_is_column_configurable() -> None:
     summaries = summarize_clusters_in_csv(
         SAMPLE_DATA / "details.csv",
-        cluster_column="persistentId",
+        cluster_column="entity_id",
     )
 
     by_cluster = {summary.cluster_id: summary for summary in summaries}

@@ -1,9 +1,9 @@
-entityId,persistentId,suggestedClusterId,source_dataset_name,company_name,trusted_id,Rule_ID_1,Rule_ID_2,appliedRules,ml_company_name,ml_full_address,ml_country_code,profile_url
+record_id,entity_id,suggested_entity_id,source_dataset_name,company_name,reference_id,Rule_ID_1,Rule_ID_2,appliedRules,normalized_company_name,normalized_full_address,normalized_country_code,profile_url
 e001,p001,p001,crm,Acme Corporation,T100,A100,B100,rule_id_1_matching,Acme Corp,"100 Main St, Boston, MA",US,https://example.org/profiles/acme
 e002,p001,p001,billing,ACME Corp,T100,A100,B101,rule_id_1_matching,Acme Corporation,"100 Main Street, Boston, MA",US,https://example.org/profiles/acme
-e003,p002,p002,crm,Northwind LLC,T200,A200,B200,trusted_id_matching,Northwind,"5 Pine Rd, Seattle, WA",US,https://example.org/profiles/northwind
+e003,p002,p002,crm,Northwind LLC,T200,A200,B200,reference_id_matching,Northwind,"5 Pine Rd, Seattle, WA",US,https://example.org/profiles/northwind
 e004,p002,p002,web,North Wind Limited,T201,A201,B200,rule_id_2_matching,North Wind Ltd,"5 Pine Road, Seattle, WA",US,https://example.org/profiles/north-wind
 e005,p003,p003,crm,Globex Inc,T300,A300,B300,rule_id_1_matching,Globex,"99 Market St, San Francisco, CA",US,https://example.org/profiles/globex
 e006,p004,p004,crm,Globex International,T301,A301,B301,rule_id_1_matching,Globex Intl,"99 Market Street, San Francisco, CA",US,https://example.org/profiles/globex-intl
-e007,p005,p005,partner,Example GmbH,T400,A400,B400,trusted_id_matching,Example GmbH,"Alexanderplatz 1, Berlin",DE,https://example.org/profiles/example-gmbh
-e008,p005,p005,billing,Example Germany,T400,A401,B401,trusted_id_matching,Example GmbH,"Alexanderplatz 1, Berlin",DE,https://example.org/profiles/example-germany
+e007,p005,p005,partner,Example GmbH,T400,A400,B400,reference_id_matching,Example GmbH,"Alexanderplatz 1, Berlin",DE,https://example.org/profiles/example-gmbh
+e008,p005,p005,billing,Example Germany,T400,A401,B401,reference_id_matching,Example GmbH,"Alexanderplatz 1, Berlin",DE,https://example.org/profiles/example-germany

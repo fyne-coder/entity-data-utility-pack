@@ -1,4 +1,4 @@
-entityId,persistentId
+record_id,entity_id
 e001,p001
 e002,p001
 e003,p002

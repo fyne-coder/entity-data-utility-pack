@@ -10,8 +10,8 @@ def test_compare_export_membership_csv_detects_group_membership_drift() -> None:
     differences = compare_export_membership_csv(
         SAMPLE_DATA / "export_old.csv",
         SAMPLE_DATA / "export_new.csv",
-        id_column="persistentId",
-        member_column="entityId",
+        id_column="entity_id",
+        member_column="record_id",
     )
 
     by_id = {difference.id_value: difference for difference in differences}

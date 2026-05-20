@@ -1,4 +1,4 @@
-clusterId1,clusterId2,clusterPairSimilarity
+left_entity_id,right_entity_id,candidate_pair_score
 p003,p004,0.91
 p001,p002,0.42
 p001,p005,0.25

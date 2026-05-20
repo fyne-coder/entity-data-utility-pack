@@ -26,8 +26,8 @@ aggregators, bounded duplicate blocks, and capped report previews.
 
 ```bash
 er-review profile export.csv --out output/profile.csv
-er-review mappings export.csv --left persistent_id --right source_id --out output/mappings.csv
-er-review clusters export.csv --cluster persistent_id --match-prefix ml_ --out output/clusters.csv
+er-review mappings export.csv --left entity_id --right source_id --out output/mappings.csv
+er-review clusters export.csv --cluster entity_id --match-prefix normalized_ --out output/clusters.csv
 er-review duplicates export.csv \
   --block normalized_dob \
   --match full_name \
@@ -37,7 +37,7 @@ er-review duplicates export.csv \
   --sample-rate 0.25 \
   --workers 4 \
   --out output/duplicate_candidates.csv
-er-review report export.csv --out-dir output/review --cluster persistent_id --max-output-rows 5000
+er-review report export.csv --out-dir output/review --cluster entity_id --max-output-rows 5000
 ```
 
 ## Benchmark Harness

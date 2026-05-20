@@ -17,7 +17,7 @@ def test_cli_profile_writes_csv(tmp_path: Path) -> None:
     assert exit_code == 0
     content = output.read_text()
     assert "column,total_rows,blank_count" in content
-    assert "persistentId" in content
+    assert "entity_id" in content
 
 
 def test_cli_profile_supports_tsv_input(tmp_path: Path) -> None:
@@ -129,7 +129,7 @@ def test_cli_clusters_writes_cluster_summary(tmp_path: Path) -> None:
             "clusters",
             str(SAMPLE_DATA / "details.csv"),
             "--cluster",
-            "persistentId",
+            "entity_id",
             "--chart-out",
             str(chart),
             "--out",
@@ -152,9 +152,9 @@ def test_cli_report_writes_consolidated_artifacts(tmp_path: Path) -> None:
             "--out-dir",
             str(output_dir),
             "--mapping",
-            "persistentId:trusted_id",
+            "entity_id:reference_id",
             "--cluster",
-            "persistentId",
+            "entity_id",
         ]
     )
 
@@ -162,7 +162,7 @@ def test_cli_report_writes_consolidated_artifacts(tmp_path: Path) -> None:
     assert (output_dir / "report.html").exists()
     assert (output_dir / "profile.csv").exists()
     assert (output_dir / "hygiene.csv").exists()
-    assert (output_dir / "mapping_persistentid_to_trusted_id.csv").exists()
+    assert (output_dir / "mapping_entity_id_to_reference_id.csv").exists()
     assert (output_dir / "clusters.csv").exists()
     assert (output_dir / "cluster_sizes.svg").exists()
     assert "One-to-Many Mapping" in (output_dir / "report.html").read_text()
@@ -220,7 +220,7 @@ def test_cli_similarity_rejects_missing_tfidf_extra(
             str(SAMPLE_DATA / "details.csv"),
             str(SAMPLE_DATA / "similar.csv"),
             "--cluster",
-            "persistentId",
+            "entity_id",
             "--compare",
             "company_name",
             "--method",

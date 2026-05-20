@@ -9,8 +9,8 @@ SAMPLE_DATA = ROOT / "sample_data"
 def test_find_one_to_many_mappings_in_csv_is_column_configurable() -> None:
     issues = find_one_to_many_mappings_in_csv(
         SAMPLE_DATA / "details.csv",
-        left_column="persistentId",
-        right_column="trusted_id",
+        left_column="entity_id",
+        right_column="reference_id",
     )
 
     assert len(issues) == 1

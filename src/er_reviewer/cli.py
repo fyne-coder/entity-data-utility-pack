@@ -795,10 +795,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--cluster", required=True, help="Cluster identifier column in details CSV."
     )
     similarity.add_argument(
-        "--left-pair", default="clusterId1", help="Left cluster column in pairs CSV."
+        "--left-pair", default="left_entity_id", help="Left entity/group column in pairs CSV."
     )
     similarity.add_argument(
-        "--right-pair", default="clusterId2", help="Right cluster column in pairs CSV."
+        "--right-pair", default="right_entity_id", help="Right entity/group column in pairs CSV."
     )
     similarity.add_argument(
         "--method",
