@@ -37,10 +37,20 @@ make better decisions before data is loaded, matched, migrated, or reported.
 
 - `src/er_reviewer/`: importable package and CLI implementation.
 - `tests/`: unit and CLI smoke tests.
-- `docs/`: design references and performance guidance.
+- `docs/`: business guide, agent usage guide, design references, and
+  performance guidance.
 - `examples/`: notebook-style analyst walkthroughs.
 - `sample_data/`: synthetic CSVs for development and testing.
 - `scripts/`: local benchmark and validation helpers.
+
+## Start Here
+
+- [Business User Guide](docs/business_user_guide.md): plain-language workflow
+  for analysts and business users.
+- [Using This Repo in Codex or Cowork](docs/codex_cowork_usage.md): prompts and
+  operating rules for agent workspaces.
+- [Performance and Large Dataset Notes](docs/performance.md): scaling guidance
+  and large-export defaults.
 
 ## Install
 
@@ -200,8 +210,8 @@ in-memory convenience paths rather than million-row defaults.
   local notebooks with private outputs, credentials, API keys, or benchmark
   data.
 - Generated analyst artifacts such as `.xlsx`, `.parquet`, `.pdf`, local report
-  folders, coverage files, virtual environments, and caches are ignored by
-  `.gitignore`.
+  folders, local `input/` and `data/` folders, coverage files, virtual
+  environments, and caches are ignored by `.gitignore`.
 - The repo-native validation gate is `make ci`; GitHub Actions runs the same
   command on push and pull request.
 
